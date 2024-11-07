@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,10 +13,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="">
-                        <img src="https://cdn-icons-png.flaticon.com/512/8628/8628564.png" width="30" height="30" alt="">
-                        ACRE LOG
-                    </a>
+                  <a class="navbar-brand" href="/acrelog">ACRE LOG</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -40,63 +38,22 @@
               </nav>
         </header>
 
-        <div class="mt-5 container-fluid bg-success text-white">
-            <h1>Field {{ field.location_name }}</h1>
-        </div>
-
         <main class="mt-5 container">
             <div class="mt-5 container-fluid">
-                
-                <div class="container-fluid bg-secondary text-white">
-                    <h3>Operation Code</h3>
-                </div>
-                
-                <table class="table">
-                    <tr>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                    </tr>
-                    <tr>
-                        <td> Spread/Spray </td>
-                        <td> Tillage </td>
-                        <td> Planting </td>
-                        <td> Harvest </td>
-                        <td> Soil Sampling </td>
-                    </tr>
-                </table>
-
-                <div class="mt-5 container-fluid bg-secondary text-white">
-                    <h3>List</h3>
-                </div>
-
-                <table class="table">
-                    <tr>
-                        <th>Operation Date</th>
-                        <th>Field Operation</th>
-                        <th>Operator</th>
-                        <th>Note</th>
-                    </tr>                    
-                    {% if logs %}
-                    {% for log in logs %}
-                    <tr>
-                        <td>{{ log.date.date }}</td>
-                        <td>{{ log.event.event }}</td>
-                        <td>{{ log.operator.operator_name }}</td>
-                        <td>{{ log.note }}</td>
-                    </tr>
+                {% if latest_fields %}
+                    <ul>
+                        {% for field in latest_fields %}
+                            <a href="/acrelog/{{ field.id }}/" class="m-1 btn btn-outline-primary">
+                                Field  :  {{ field.location_name }}
+                            </a>    
                         {% endfor %}
-                    {% else %}
-                        <p>No operations are available.</p>
-                    {% endif %}
-                </table>
-
+                    </ul>
+                {% else %}
+                    <p>No fields are available.</p>
+                {% endif %}
             </div>
-
         </main>
-
     </body>
 
-</html>
+
+    </html>
