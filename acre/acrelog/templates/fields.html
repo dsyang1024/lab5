@@ -73,6 +73,7 @@
                     <tr>
                         <th>Operation Date</th>
                         <th>Field Operation</th>
+                        <th>Operator</th>
                         <th>Note</th>
                     </tr>                    
                     {% if logs %}
@@ -80,6 +81,7 @@
                     <tr>
                         <td>{{ log.date.date }}</td>
                         <td>{{ log.event.event }}</td>
+                        <td>{{ log.operator.operator_name }}</td>
                         <td>{{ log.note }}</td>
                     </tr>
                         {% endfor %}
